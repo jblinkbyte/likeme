@@ -28,11 +28,15 @@ router.delete('/remove-user/:id', userController.removeUser)
 /* 
 Route to add note
 */
-router.post('/add-note', userController.postAddNote)
+router.post('/add-note', userController.addNote)
 /* 
 Route to remove note
 */
 router.delete('/remove-note', userController.removeNote)
+/* 
+Route to update note
+*/
+router.put('/update-note', userController.updateNote)
 /* 
 Export router
 */

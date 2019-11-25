@@ -1,6 +1,7 @@
 const errors = require('../util/errors')
 const User = require('../models/user')
 const logger = require('../util/logger').logger
+const Note = require('../models/note')
 
 exports.getUsers = (req, res) => {
     User.findAll()
@@ -70,26 +71,54 @@ exports.updateUser = (req, res) => {
         })
 }
 
-exports.postAddNote = (req, res) => {
-    console.log('running')
-    const user = req.user
-    const { body } = req.note
-    user.createNote({ body })
-        .then((result) => {
-            console.log(result)
+exports.addNote = (req, res) => {
+    const userId = 1
+    const note = req.body.note
+    User.findByPk(userId)
+        .then(user => {
+            return user.createNote(note)
+
+        })
+        .then(() => {
             res.send('Success')
         })
-
         .catch(err => console.log(err))
 }
 
+
+exports.updateNote = (req, res) => {
+    const { id, body } = req.body
+
+    Note.findByPk(id)
+        .then((note) => {
+            note.body = body
+            return note.save()
+        })
+        .then(() => {
+            res.send('success')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
 exports.removeNote = (req, res) => {
-    console.log('runnung')
-    const user = req.user
-    user.destroyNote(1)
+    const { id } = req.body
+    Note.findByPk(id)
+        .then((note) => {
+            if (note) {
+                return note.destroy()
+            }
+        })
         .then(() => {
             res.send('success')
         })
         .catch(err => console.log(err))
-
 }
+
+
+
+
+
+
+

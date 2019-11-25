@@ -22,14 +22,14 @@ app.use(express.urlencoded({ extended: false }))
     DUMMY USER
 */
 
-app.use((req, res, next) => {
-    User.findByPk(1)
-        .then((user) => {
-            req.user = user
-            next()
-        })
-        .catch(err => console.log(err))
-})
+// app.use((req, res, next) => {
+//     User.findByPk(1)
+//         .then((user) => {
+//             req.user = user
+//             next()
+//         })
+//         .catch(err => console.log(err))
+// })
 
 // app.use((req, res, next) => {
 //     req.note = { body: 'hello from the server' }

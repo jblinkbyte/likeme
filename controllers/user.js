@@ -69,3 +69,27 @@ exports.updateUser = (req, res) => {
             console.log(err)
         })
 }
+
+exports.postAddNote = (req, res) => {
+    console.log('running')
+    const user = req.user
+    const { body } = req.note
+    user.createNote({ body })
+        .then((result) => {
+            console.log(result)
+            res.send('Success')
+        })
+
+        .catch(err => console.log(err))
+}
+
+exports.removeNote = (req, res) => {
+    console.log('runnung')
+    const user = req.user
+    user.destroyNote(1)
+        .then(() => {
+            res.send('success')
+        })
+        .catch(err => console.log(err))
+
+}

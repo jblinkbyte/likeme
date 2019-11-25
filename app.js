@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.use('/user', userRoutes)
 
 sequelize
-    .sync({ force: true })
+    .sync({ force: false })
     .then(result => {
         // console.log(result);
         app.listen(PORT, () => console.log('running server'))

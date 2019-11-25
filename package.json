@@ -2,8 +2,9 @@
   "name": "likeme",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,5 +15,8 @@
     "express": "^4.17.1",
     "mysql2": "^2.0.1",
     "sequelize": "^5.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
   }
 }
